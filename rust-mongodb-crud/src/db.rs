@@ -226,7 +226,7 @@ impl DB {
     ///
     /// # Examples
     ///
-    /// ```
+    /// ```rust
     /// # use my_db_handler::{DB, CreateNoteSchema};
     /// # async fn example() -> Result<(), Box<dyn std::error::Error>> {
     /// # let db = DB::init().await?;
@@ -277,7 +277,7 @@ impl DB {
     ///
     /// # Examples
     ///
-    /// ```
+    /// ```rust
     /// # use my_db_handler::{DB, UpdateNoteSchema};
     /// # async fn example() -> Result<(), Box<dyn std::error::Error>> {
     /// # let db = DB::init().await?;
@@ -349,7 +349,7 @@ impl DB {
     ///
     /// # Examples
     ///
-    /// ```
+    /// ```rust
     /// # use my_db_handler::DB;
     /// # async fn example() -> Result<(), Box<dyn std::error::Error>> {
     /// # let db = DB::init().await?;
@@ -391,7 +391,7 @@ impl DB {
     ///
     /// # Examples
     ///
-    /// ```
+    /// ```rust
     /// # use my_db_handler::{DB, NoteModel};
     /// # async fn example(db: &DB) -> Result<(), Box<dyn std::error::Error>> {
     /// # let note = NoteModel::default(); // Placeholder for a NoteModel instance
