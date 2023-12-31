@@ -1,18 +1,19 @@
 version: '3'
+
 services:
   mongo:
     image: mongo:latest
     container_name: mongo
     env_file:
-      - ./.env
+      - ./.env # Load environment variables from .env file
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWARD: ${MONGO_INITDB_ROOT_PASSWARD}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME} # Set root username
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD} # Set root password
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE} # Set initial database name
     volumes:
-      - mongo:/data/db
+      - mongo:/data/db # Mount a volume for persistent data storage
     ports:
-      - '6000:27017'
+      - '6000:27017' # Map host port 6000 to container port 27017
 
 volumes:
-  mongo:
+  mongo: # Define the 'mongo' volume for MongoDB data storage
