@@ -28,7 +28,7 @@ pub struct CreateNoteSchema {
     pub category: Option<String>,
     /// Whether the note is published or not.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub published: Option<Bool>,
+    pub published: Option<bool>,
 }
 
 /// Schema for updating an existing note.
@@ -36,14 +36,14 @@ pub struct CreateNoteSchema {
 pub struct UpdateNoteSchema {
     /// The updated title of the note.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub title: String,
+    pub title: Option<String>,
     /// The updated content of the note.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub content: String,
+    pub content: Option<String>,
     /// The updated category of the note, if available.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub category: Option<String>,
     /// Whether the note should be marked as published or unpublished.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub published: Option<Bool>,
+    pub published: Option<bool>,
 }

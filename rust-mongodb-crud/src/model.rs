@@ -15,7 +15,7 @@ pub struct NoteModel {
     /// Optional category of the note.
     pub category: Option<String>,
     /// Optional publication status of the note.
-    pub published: Option<Bool>,
+    pub published: Option<bool>,
     /// Date and time when the note was created.
     #[serde(with = "bson::serde_helpers::chrono_datetime_as_bson_datetime")]
     pub createdAt: DateTime<Utc>,

@@ -89,13 +89,12 @@ pub async fn handle_rejection(err: Rejection) -> std::result::Result<Box<dyn Rep
                 status = "fail";
                 code = StatusCode::BAD_REQUEST;
                 message = e.as_str();
-            }
-            _ => {
-                eprintln!("unhandled application error: {:?}", err);
-                status = "error";
-                code = StatusCode::INTERNAL_SERVER_ERROR;
-                message = "Internal Server Error";
-            }
+            } // _ => {
+              //     eprintln!("unhandled application error: {:?}", err);
+              //     status = "error";
+              //     code = StatusCode::INTERNAL_SERVER_ERROR;
+              //     message = "Internal Server Error";
+              // }
         }
     } else if let Some(_) = err.find::<warp::reject::MethodNotAllowed>() {
         status = "failed";

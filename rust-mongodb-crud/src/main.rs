@@ -1,51 +1,77 @@
+mod db;
 mod errors;
+mod handlers;
+mod model;
 mod response;
+mod schema;
 
-use serde::Serialize;
-use warp::{reply::json, Filter, Rejection, Reply};
+use db::DB;
+use dotenv::dotenv;
+use schema::FilterOptions;
+use std::convert::Infallible;
+use warp::{http::Method, Filter, Rejection};
 
-/// Type alias for handling web-related results.
+type Result<T> = std::result::Result<T, errors::Error>;
 type WebResult<T> = std::result::Result<T, Rejection>;
 
-/// Represents a generic response structure for the API.
-#[derive(Serialize)]
-pub struct GenericResponse {
-    pub status: String,  // Status of the response.
-    pub message: String, // Message in the response.
-}
-
-/// Handles the health check endpoint.
-///
-/// This function responds with a JSON indicating the status of the API.
-/// Returns a `Reply` which is a trait used for generating HTTP responses.
-pub async fn health_checker_handler() -> WebResult<impl Reply> {
-    const MESSAGE: &str = "Build CRUD API with Rust and MongoDB";
-
-    let response_json = &GenericResponse {
-        status: "success".to_string(),
-        message: MESSAGE.to_string(),
-    };
-
-    // Serialize the response to JSON and return it as a Reply.
-    Ok(json(response_json))
-}
-
 #[tokio::main]
-async fn main() {
-    // Initialization and server setup code here.
+async fn main() -> Result<()> {
     if std::env::var_os("RUST_LOG").is_none() {
         std::env::set_var("RUST_LOG", "api=info");
     }
     pretty_env_logger::init();
+    dotenv().ok();
+    let db = DB::init().await?;
 
-    // Define the health checker route.
+    let cors = warp::cors()
+        .allow_methods(&[Method::GET, Method::POST, Method::PATCH, Method::DELETE])
+        .allow_origins(vec!["http://localhost:3000"])
+        .allow_headers(vec!["content-type"])
+        .allow_credentials(true);
+
+    let note_router = warp::path!("api" / "notes");
+    let note_router_id = warp::path!("api" / "notes" / String);
     let health_checker = warp::path!("api" / "healthchecker")
         .and(warp::get())
-        .and_then(health_checker_handler);
+        .and_then(handlers::health_checker_handler);
 
-    // Attach logging and serve the defined routes.
-    let routes = health_checker.with(warp::log("api"));
+    let note_routes = note_router
+        .and(warp::post())
+        .and(warp::body::json())
+        .and(with_db(db.clone()))
+        .and_then(handlers::create_note_handler)
+        .or(note_router
+            .and(warp::get())
+            .and(warp::query::<FilterOptions>())
+            .and(with_db(db.clone()))
+            .and_then(handlers::notes_list_handler));
 
-    println!("Server started successfully!");
-    warp::serve(routes).run(([0, 0, 0, 0], 8080)).await;
+    let note_routes_id = note_router_id
+        .and(warp::patch())
+        .and(warp::body::json())
+        .and(with_db(db.clone()))
+        .and_then(handlers::edit_note_handler)
+        .or(note_router_id
+            .and(warp::get())
+            .and(with_db(db.clone()))
+            .and_then(handlers::get_note_handler))
+        .or(note_router_id
+            .and(warp::delete())
+            .and(with_db(db.clone()))
+            .and_then(handlers::delete_note_handler));
+
+    let routes = note_routes
+        .with(warp::log("api"))
+        .or(note_routes_id)
+        .or(health_checker)
+        .with(cors)
+        .recover(errors::handle_rejection);
+
+    println!("Server started successfully");
+    warp::serve(routes).run(([0, 0, 0, 0], 8000)).await;
+    Ok(())
+}
+
+fn with_db(db: DB) -> impl Filter<Extract = (DB,), Error = Infallible> + Clone {
+    warp::any().map(move || db.clone())
 }
