@@ -5,3 +5,7 @@ dev:
 # Start MongoDB in a Docker container
 mongo_in_docker:
 	docker-compose up -d
+
+# Stop Docker container
+stop_docker:
+	docker-compose down
