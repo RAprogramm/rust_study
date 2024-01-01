@@ -27,18 +27,45 @@
 
 <h3>Running the Application</h3>
 
-<ol>
-  <li>Clone the repository:
-    <pre><code>git clone https://github.com/RAprogramm/rust-study/rust-mongodb-crud.git
-    cd rust-study/rust-mongodb-crud</code></pre>
-  </li>
-  <li>Start MongoDB using Docker:
-    <pre><code>make mongo_in_docker</code></pre>
-  </li>
-  <li>Build and run the project:
-    <pre><code>make dev</code></pre>
-  </li>
-</ol>
+> I'll show you how to do it with terminal command in linux.
+
+1. [Download the repository](https://downgit.evecalm.com/#/home?url=https://github.com/RAprogramm/rust_study/tree/main/rust-mongodb-crud).
+
+2. Go to your download folder.
+
+   > for example
+   >
+   > ```sh
+   > cd  ~/Downloads
+   > ```
+
+3. Extract project from ZIP archive.
+
+   > in Downloads folder
+   >
+   > ```sh
+   > unzip rust-mongodb-crud.zip
+   > ```
+
+4. Enter the project.
+
+   > after extracting
+   >
+   > ```sh
+   > cd rust-mongodb-crud
+   > ```
+
+5. Start MongoDB using Docker:
+
+```sh
+make mongo_in_docker
+```
+
+6. Build and run the project:
+
+```sh
+make dev
+```
 
 <h3>Configuration</h3>
 
@@ -49,3 +76,4 @@
 <h2 id="usage">Usage</h2>
 
 <p>Access the API at <code>http://localhost:8080/api/notes</code></p>
+<p>Check heath of the API at <code>http://localhost:8080/api/healthchecker</code></p>
