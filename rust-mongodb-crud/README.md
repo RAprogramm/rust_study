@@ -55,13 +55,15 @@
    > cd rust-mongodb-crud
    > ```
 
-5. Start MongoDB using Docker:
+5. Rename `example.env` to `.env`
+
+6. Start MongoDB using Docker:
 
 ```sh
 make mongo_in_docker
 ```
 
-6. Build and run the project:
+7. Build and run the project:
 
 ```sh
 make dev
