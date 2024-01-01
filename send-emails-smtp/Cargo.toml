@@ -1,0 +1,14 @@
+[package]
+name = "send-emails-smtp"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dotenv = "0.15.0" # Loads environment variables from a .env file, ensuring secure storage of sensitive information like SMTP credentials.
+handlebars = "5.0.0" # A templating engine used to dynamically generate HTML templates for the email content.
+lettre = { version = "0.11.2", features = ["tokio1", "tokio1-native-tls"] } # A feature-rich email client for sending emails via SMTP servers.
+serde = { version = "1.0.193", features = ["derive"] } # Enables serialization and deserialization of Rust data structures, aiding in data handling for email generation.
+serde_json = "1.0.109" # Enables JSON serialization and deserialization, facilitating the insertion of data into email templates.
+tokio = { version = "1.35.1", features = ["full"] } #  An asynchronous runtime that supports concurrent operations, allowing for efficient handling of email-sending processes.
