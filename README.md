@@ -9,7 +9,7 @@
   
 <tr>
 <td><a href="./rust-mongodb-crud/README.md">MongoDB CRUD</a></td>
-  <td>
+<td>
     
 [![warp](https://shields.io/badge/warp-0.3.6-grey)](https://docs.rs/warp/0.3.6/warp/index.html)
 [![chrono](https://shields.io/badge/chrono-0.4.31-grey)](https://docs.rs/chrono/0.4.31/chrono/index.html)
@@ -20,9 +20,8 @@
 [![serde](https://shields.io/badge/serde-1.0.193-grey)](https://docs.rs/serde/1.0.193/serde/index.html)
 [![thiserror](https://shields.io/badge/thiserror-1.0.52-grey)](https://docs.rs/thiserror/1.0.52/thiserror/index.html)
 [![tokio](https://shields.io/badge/tokio-1.35.1-grey)](https://docs.rs/tokio/1.35.1/tokio/index.html)
-  </td>
-</tr>
-  
 
+</td>
+</tr>
 
 </table>
