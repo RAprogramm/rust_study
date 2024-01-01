@@ -9,6 +9,7 @@
 - [Usage](#usage)
 - [Project Structure](#project-structure)
 - [Check how it works](#check-how-it-works)
+- [Screenshots](#screenshots)
 <!--toc:end-->
 
 ## Overview
@@ -90,3 +91,9 @@ To capture all the development emails, follow these steps:
 4. After the inbox is created, locate the gear icon in the Action section and click on it to access the settings page.
 5. On the settings page, find the ‘Show Credentials‘ link and click on it to expand the dropdown. You will find the SMTP credentials within. Copy these credentials.
 6. Finally, add the copied SMTP credentials to your .env file.
+
+## Screenshots
+
+![code](./.screenshots/verification_code.png)
+
+![pass](./.screenshots/reset_pass.png)

@@ -23,7 +23,7 @@ async fn main() {
 
     // Create a User instance
     let user = User {
-        name: String::from("RAprogramm"),
+        name: String::from("Recipient"),
         email: config.smtp_to.to_owned(),
     };
 

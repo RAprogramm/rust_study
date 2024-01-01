@@ -24,4 +24,18 @@
 </td>
 </tr>
 
+<tr>
+<td><a href="./send-emails-smtp/README.md">Send Emails SMTP</a></td>
+<td>
+    
+[![dotenv](https://shields.io/badge/dotenv-0.15.0-darkgreen)](https://docs.rs/dotenv/0.15.0/dotenv/index.html)
+[![handlebars](https://shields.io/badge/handlebars-5.0.0-darkgreen)](https://docs.rs/handlebars/5.0.0/handlebars/index.html)
+[![lettre](https://shields.io/badge/lettre-0.11.2-darkgreen)](https://docs.rs/lettre/0.11.2/lettre/index.html)
+[![serde](https://shields.io/badge/serde-1.0.193-darkgreen)](https://docs.rs/serde/1.0.193/serde/index.html)
+[![serde_json](https://shields.io/badge/serde_json-1.0.109-darkgreen)](https://docs.rs/serde_json/1.0.109/serde_json/index.html)
+[![tokio](https://shields.io/badge/tokio-1.35.1-darkgreen)](https://docs.rs/tokio/1.35.1/tokio/index.html)
+
+</td>
+</tr>
+
 </table>

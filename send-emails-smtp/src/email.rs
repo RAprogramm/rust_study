@@ -36,7 +36,7 @@ impl Email {
     /// ```
     pub fn new(user: User, url: String, config: Config) -> Self {
         // Construct the sender's email address using the configured SMTP settings.
-        let from = format!("RAprogramm <{}>", config.smtp_from.to_owned());
+        let from = format!("Sender <{}>", config.smtp_from.to_owned());
 
         Email {
             user,
